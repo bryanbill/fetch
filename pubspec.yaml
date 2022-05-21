@@ -1,7 +1,7 @@
 name: fetch
 description: Make http requests easily
 version: 0.0.1
-# homepage: https://www.example.com
+homepage: https://github.com/bryanbill/fetch
 
 environment:
   sdk: '>=2.16.2 <3.0.0'
