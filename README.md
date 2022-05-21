@@ -1,17 +1,6 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Fetchx
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-A dart/flutter package for making network requests.
+A dart/flutter package for making HTTP requests.
 
 ## Features
 
@@ -21,23 +10,67 @@ A dart/flutter package for making network requests.
 - Delete
 - Patch
 
-
 ## Usage
 
-To use the package add this to your pubspec.yaml
+To use this package add this to your pubspec.yaml
 
 ```yaml
 dependencies:
   fetchx: ^0.0.1
 ```
-Then import the package
 
+Then import the package
 
 ```dart
 import 'package:fetchx/fetchx.dart';
-
-void main() async{
-    // Use the package
-}
 ```
 
+### Get
+
+```dart
+
+final response = await "https://jsonplaceholder.typicode.com/posts/1".get();
+
+```
+
+### Post
+
+```dart
+
+final response = await "https://jsonplaceholder.typicode.com/posts".post({
+  "title": "foo",
+  "body": "bar",
+  "userId": 1
+});
+
+```
+
+### Put
+
+```dart
+
+final response = await "https://jsonplaceholder.typicode.com/posts/1".put({
+  "title": "foo",
+  "body": "bar",
+  "userId": 1
+});
+
+```
+
+### Delete
+
+```dart
+
+final response = await "https://jsonplaceholder.typicode.com/posts/1".delete();
+
+```
+
+### Patch
+
+```dart
+
+final response = await "https://jsonplaceholder.typicode.com/posts/1".patch({
+  "title": "foo"
+});
+
+```
