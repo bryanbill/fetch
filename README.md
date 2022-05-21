@@ -28,13 +28,13 @@ To use the package add this to your pubspec.yaml
 
 ```yaml
 dependencies:
-  fetch: ^0.0.1
+  fetchx: ^0.0.1
 ```
 Then import the package
 
 
 ```dart
-import 'package:fetch/fetch.dart';
+import 'package:fetchx/fetch.dart';
 
 void main() async{
     // Use the package

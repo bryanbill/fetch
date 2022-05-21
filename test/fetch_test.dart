@@ -1,5 +1,4 @@
-import 'package:fetch/src/extensions/string.extension.dart';
-import 'package:fetch/src/models/response.model.dart';
+import 'package:fetchx/fetchx.dart';
 import 'package:test/test.dart';
 
 void main() {

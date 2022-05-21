@@ -1,5 +1,5 @@
-import 'package:fetch/src/handlers/request.handler.dart';
-import 'package:fetch/src/models/response.model.dart';
+import 'package:fetchx/src/handlers/request.handler.dart';
+import 'package:fetchx/src/models/response.model.dart';
 
 extension RequestParsing on String {
   /// Returns a [Response] object with the response from the server.

@@ -1,4 +1,4 @@
-import 'package:fetch/fetch.dart';
+import 'package:fetchx/fetchx.dart';
 
 void main() async {
   // Get Method

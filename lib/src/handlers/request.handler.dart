@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:fetch/src/models/response.model.dart';
+import 'package:fetchx/src/models/response.model.dart';
 
 class RequestHandler {
   final String url;
