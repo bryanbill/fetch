@@ -1,6 +1,6 @@
 name: fetchx
 description: Make http requests easily
-version: 0.0.1
+version: 0.0.2+alpha
 homepage: https://github.com/bryanbill/fetch
 
 environment:
