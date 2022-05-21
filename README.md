@@ -34,7 +34,7 @@ Then import the package
 
 
 ```dart
-import 'package:fetchx/fetch.dart';
+import 'package:fetchx/fetchx.dart';
 
 void main() async{
     // Use the package
