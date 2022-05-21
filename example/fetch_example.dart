@@ -5,7 +5,6 @@ void main() async {
   Response response =
       await 'https://jsonplaceholder.typicode.com/posts/1'.get();
   print(response.body);
-
   // Post Method
   response = await 'https://jsonplaceholder.typicode.com/posts'.post(
     {
