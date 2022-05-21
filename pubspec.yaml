@@ -4,7 +4,7 @@ version: 0.0.2+alpha
 homepage: https://github.com/bryanbill/fetch
 
 environment:
-  sdk: '>=2.16.2 <3.0.0'
+  sdk: '>=2.16.0 <3.0.0'
 
 
 # dependencies:
