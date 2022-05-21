@@ -16,4 +16,20 @@ class RequestHandler {
     return Response.fromClient(
         response, await response.transform(Utf8Decoder()).join());
   }
+
+  Future<Response> post() async {
+    var request = await HttpClient().postUrl(Uri.parse(url));
+    if (body != null) {
+      request.headers.set('content-type', 'application/json');
+      request.add(utf8.encode(json.encode(body)));
+    }
+    if (headers != null) {
+      headers!.forEach((key, value) {
+        request.headers.set(key, value);
+      });
+    }
+    var response = await request.close();
+    return Response.fromClient(
+        response, await response.transform(Utf8Decoder()).join());
+  }
 }
