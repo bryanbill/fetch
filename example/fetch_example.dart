@@ -1,5 +1,4 @@
-import 'package:fetch/src/extensions/string.extension.dart';
-import 'package:fetch/src/models/response.model.dart';
+import 'package:fetch/fetch.dart';
 
 void main() async {
   // Get Method
