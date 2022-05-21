@@ -1,6 +1,6 @@
-import 'package:fetch/fetch.dart';
 
+import 'package:fetch/src/extensions/string.extension.dart';
 void main() {
-  var awesome = Awesome();
-  print('awesome: ${awesome.isAwesome}');
+  final response = 'https://www.google.com'.get();
+  print(response);
 }

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 class Response {
@@ -14,5 +15,9 @@ class Response {
         body: body,
         connectionInfo: clientResponse.connectionInfo,
         headers: clientResponse.headers);
+  }
+
+  dynamic json() {
+    return jsonDecode(body!);
   }
 }
