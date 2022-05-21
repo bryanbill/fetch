@@ -6,9 +6,9 @@ import 'package:fetch/src/models/response.model.dart';
 class RequestHandler {
   final String url;
   final Object? body;
-  final Map<String, String>? headers;
+  final Map<String, dynamic>? headers;
 
-  RequestHandler(this.url, this.body, this.headers);
+  RequestHandler(this.url, {this.body, this.headers});
 
   /// Returns a [Response] object with the response from the server.
   ///
