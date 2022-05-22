@@ -1,3 +1,4 @@
+```dart
 import 'package:fetchx/fetchx.dart';
 
 void main() async {
@@ -40,3 +41,4 @@ void main() async {
   );
   print(response.body);
 }
+```
