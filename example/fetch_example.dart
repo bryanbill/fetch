@@ -4,6 +4,7 @@ void main() async {
   //Get Method
   Response response =
       await 'https://jsonplaceholder.typicode.com/posts/1'.get();
+  print(response.statusCode);
   print(response.body);
 
   //Post Method
@@ -14,6 +15,7 @@ void main() async {
       'userId': 1,
     },
   );
+  print(response.statusCode);
   print(response.body);
 
   // Put Method
@@ -24,12 +26,14 @@ void main() async {
       'userId': 1,
     },
   );
-  // print(response.body);
-
+  print(response.statusCode);
+  print(response.body);
+  
   // Delete Method
   response = await 'https://jsonplaceholder.typicode.com/posts/1'.delete();
+  print(response.statusCode);
   print(response.body);
-
+ 
   // Patch Method
   response = await 'https://jsonplaceholder.typicode.com/posts/1'.patch(
     {
@@ -38,5 +42,6 @@ void main() async {
       'userId': 1,
     },
   );
+  print(response.statusCode);
   print(response.body);
 }
