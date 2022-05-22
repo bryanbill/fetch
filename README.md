@@ -33,6 +33,8 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".get();
 
 ### Post
 
+
+
 ```dart
 
 final response = await "https://jsonplaceholder.typicode.com/posts".post({
@@ -44,6 +46,8 @@ final response = await "https://jsonplaceholder.typicode.com/posts".post({
 ```
 
 ### Put
+
+
 
 ```dart
 
@@ -57,6 +61,8 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".put({
 
 ### Delete
 
+
+
 ```dart
 
 final response = await "https://jsonplaceholder.typicode.com/posts/1".delete();
@@ -64,6 +70,7 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".delete();
 ```
 
 ### Patch
+
 
 ```dart
 
