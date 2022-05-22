@@ -1,12 +1,12 @@
 import 'package:fetchx/fetchx.dart';
 
 void main() async {
-  Response response = await 'https://jsonplaceholder.typicode.com/posts'.put(
+  Response response = await 'https://jsonplaceholder.typicode.com/posts/1'.put(
     {
       'title': 'foo',
       'body': 'bar',
       'userId': 1,
     },
   );
-  print(response.body);
+  print(response.json());
 }

@@ -5,10 +5,40 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "fetch",
+      "name": "fetch - all",
       "request": "launch",
       "type": "dart",
       "program": "example/fetch_example.dart"
+    },
+    {
+      "name": "fetch - get",
+      "request": "launch",
+      "type": "dart",
+      "program": "example/get.dart"
+    },
+    {
+      "name": "fetch - post",
+      "request": "launch",
+      "type": "dart",
+      "program": "example/post.dart"
+    },
+    {
+      "name": "fetch - delete",
+      "request": "launch",
+      "type": "dart",
+      "program": "example/delete.dart"
+    },
+    {
+      "name": "fetch - put",
+      "request": "launch",
+      "type": "dart",
+      "program": "example/put.dart"
+    },
+    {
+      "name": "fetch - patch",
+      "request": "launch",
+      "type": "dart",
+      "program": "example/patch.dart"
     }
   ]
 }

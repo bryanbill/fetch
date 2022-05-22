@@ -17,8 +17,8 @@ void main() {
 
     test("Put Method", () async {
       Response response = await "https://jsonplaceholder.typicode.com/posts/1"
-          .put({'title': 'foo', 'body': 'bar', 'userId': 1});
-      expect(response.json()['title'], 'foo');
+          .put({"id": 1, 'title': 'foo', 'body': 'bar', 'userId': 1});
+      expect(response.statusCode, 200);
     });
 
     test("Delete Method", () async {
