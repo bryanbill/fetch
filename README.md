@@ -3,7 +3,6 @@
 A dart/flutter package for making HTTP requests.
 
 ## Features
-
 - Get
 - Post
 - Put
@@ -11,12 +10,11 @@ A dart/flutter package for making HTTP requests.
 - Patch
 
 ## Usage
-
 To use this package add this to your pubspec.yaml
 
 ```yaml
 dependencies:
-  fetchx: ^0.0.1
+  fetchx: ^0.0.3+alpha
 ```
 
 Then import the package
