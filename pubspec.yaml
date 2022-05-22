@@ -1,13 +1,11 @@
 name: fetchx
 description: Make http requests easily
-version: 0.0.2+alpha
+version: 0.0.3+alpha
 homepage: https://github.com/bryanbill/fetch
 
 environment:
   sdk: ">=2.14.0 <3.0.0"
 
-# dependencies:
-#   path: ^1.8.0
 
 dev_dependencies:
   lints: ^1.0.0
