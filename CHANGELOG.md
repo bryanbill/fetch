@@ -1,3 +1,15 @@
+## 0.0.3+alpha
+
+- Supports Multipart/form-data
+- Non-restrictive content-type
+- Use Dart SDK 2.14.0+
+## 0.0.2+alpha
+
+- Use Dart SDK version 2.16.0
+
+
 ## 0.0.1
 
-- Initial version.
+- Initial release
+- Make requests on string extension
+

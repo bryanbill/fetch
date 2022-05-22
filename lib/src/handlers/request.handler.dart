@@ -7,8 +7,9 @@ class RequestHandler {
   final String url;
   final Object? body;
   final Map<String, dynamic>? headers;
+  final bool isMultipart;
 
-  RequestHandler(this.url, {this.body, this.headers});
+  RequestHandler(this.url, {this.body, this.headers, this.isMultipart = false});
 
   /// Returns a [Response] object with the response from the server.
   ///
@@ -36,10 +37,10 @@ class RequestHandler {
   /// ```
   Future<Response> post() async {
     var request = await HttpClient().postUrl(Uri.parse(url));
-    if (body != null) {
-      request.headers.set('content-type', 'application/json');
-      request.add(utf8.encode(json.encode(body)));
+    if (isMultipart) {
+      request.headers.contentType = ContentType.parse('multipart/form-data');
     }
+    request.add(utf8.encode(json.encode(body)));
     if (headers != null) {
       headers!.forEach((key, value) {
         request.headers.set(key, value);
@@ -61,10 +62,8 @@ class RequestHandler {
   /// ```
   Future<Response> put() async {
     var request = await HttpClient().putUrl(Uri.parse(url));
-    if (body != null) {
-      request.headers.set('content-type', 'application/json');
-      request.add(utf8.encode(json.encode(body)));
-    }
+    request.add(utf8.encode(json.encode(body)));
+
     if (headers != null) {
       headers!.forEach((key, value) {
         request.headers.set(key, value);
@@ -85,10 +84,7 @@ class RequestHandler {
   /// ```
   Future<Response> delete() async {
     var request = await HttpClient().deleteUrl(Uri.parse(url));
-    if (body != null) {
-      request.headers.set('content-type', 'application/json');
-      request.add(utf8.encode(json.encode(body)));
-    }
+    request.add(utf8.encode(json.encode(body)));
     if (headers != null) {
       headers!.forEach((key, value) {
         request.headers.set(key, value);
@@ -110,10 +106,7 @@ class RequestHandler {
   /// ```
   Future<Response> patch() async {
     var request = await HttpClient().patchUrl(Uri.parse(url));
-    if (body != null) {
-      request.headers.set('content-type', 'application/json');
-      request.add(utf8.encode(json.encode(body)));
-    }
+    request.add(utf8.encode(json.encode(body)));
     if (headers != null) {
       headers!.forEach((key, value) {
         request.headers.set(key, value);

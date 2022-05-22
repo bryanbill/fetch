@@ -1,12 +1,13 @@
 import 'package:fetchx/fetchx.dart';
 
 void main() async {
-  // Get Method
+  //Get Method
   Response response =
       await 'https://jsonplaceholder.typicode.com/posts/1'.get();
   print(response.body);
-  // Post Method
-  response = await 'https://jsonplaceholder.typicode.com/posts'.post(
+  
+  //Post Method
+   response = await 'https://jsonplaceholder.typicode.com/posts'.post(
     {
       'title': 'foo',
       'body': 'bar',
@@ -23,7 +24,7 @@ void main() async {
       'userId': 1,
     },
   );
-  print(response.body);
+  // print(response.body);
 
   // Delete Method
   response = await 'https://jsonplaceholder.typicode.com/posts/1'.delete();
