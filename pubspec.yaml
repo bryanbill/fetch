@@ -1,5 +1,5 @@
 name: fetchx
-description: Make http requests easily
+description: Fetchx is a simple, fast, and secure HTTP client for Dart. It leverages extensions to allow using url-like strings to make http requests.
 version: 0.0.3+alpha
 homepage: https://github.com/bryanbill/fetch
 

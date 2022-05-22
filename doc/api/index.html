@@ -44,19 +44,8 @@
   <div id="dartdoc-main-content" class="main-content">
       
 <section class="desc markdown">
-  <!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-<p>A dart/flutter package for making network requests.</p>
+  <h1 id="fetchx">Fetchx</h1>
+<p>A dart/flutter package for making HTTP requests.</p>
 <h2 id="features">Features</h2>
 <ul>
 <li>Get</li>
@@ -66,16 +55,47 @@ and the Flutter guide for
 <li>Patch</li>
 </ul>
 <h2 id="usage">Usage</h2>
-<p>To use the package add this to your pubspec.yaml</p>
+<p>To use this package add this to your pubspec.yaml</p>
 <pre class="language-yaml"><code class="language-yaml">dependencies:
-  fetchx: ^0.0.1
+  fetchx: ^0.0.3+alpha
 </code></pre>
 <p>Then import the package</p>
-<pre class="language-dart"><code class="language-dart">import 'package:fetchx/fetch.dart';
+<pre class="language-dart"><code class="language-dart">import 'package:fetchx/fetchx.dart';
+</code></pre>
+<h3 id="get">Get</h3>
+<pre class="language-dart"><code class="language-dart">
+final response = await "https://jsonplaceholder.typicode.com/posts/1".get();
 
-void main() async{
-    // Use the package
-}
+</code></pre>
+<h3 id="post">Post</h3>
+<pre class="language-dart"><code class="language-dart">
+final response = await "https://jsonplaceholder.typicode.com/posts".post({
+  "title": "foo",
+  "body": "bar",
+  "userId": 1
+});
+
+</code></pre>
+<h3 id="put">Put</h3>
+<pre class="language-dart"><code class="language-dart">
+final response = await "https://jsonplaceholder.typicode.com/posts/1".put({
+  "title": "foo",
+  "body": "bar",
+  "userId": 1
+});
+
+</code></pre>
+<h3 id="delete">Delete</h3>
+<pre class="language-dart"><code class="language-dart">
+final response = await "https://jsonplaceholder.typicode.com/posts/1".delete();
+
+</code></pre>
+<h3 id="patch">Patch</h3>
+<pre class="language-dart"><code class="language-dart">
+final response = await "https://jsonplaceholder.typicode.com/posts/1".patch({
+  "title": "foo"
+});
+
 </code></pre>
 </section>
 
@@ -83,11 +103,11 @@ void main() async{
       <section class="summary">
           <h2>Libraries</h2>
         <dl>
-          <dt id="fetch">
-  <span class="name"><a href="fetch/fetch-library.html">fetch</a></span> 
+          <dt id="fetchx">
+  <span class="name"><a href="fetchx/fetchx-library.html">fetchx</a></span> 
 
 </dt>
-<dd>Support for doing something awesome. <a href="fetch/fetch-library.html">[...]</a>
+<dd> 
 </dd>
 
         </dl>
@@ -110,7 +130,7 @@ void main() async{
     <h5 class="hidden-xs"><span class="package-name">fetchx</span> <span class="package-kind">package</span></h5>
     <ol>
       <li class="section-title">Libraries</li>
-      <li><a href="fetch/fetch-library.html">fetch</a></li>
+      <li><a href="fetchx/fetchx-library.html">fetchx</a></li>
 </ol>
 
   </div>
@@ -123,7 +143,7 @@ void main() async{
 <footer>
   <span class="no-break">
     fetchx
-      0.0.1
+      0.0.3+alpha
   </span>
 
   

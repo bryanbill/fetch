@@ -1,7 +1,6 @@
 import 'package:fetchx/fetchx.dart';
 
-void main() async{
-
+void main() async {
   Response response = await 'https://jsonplaceholder.typicode.com/posts'.put(
     {
       'title': 'foo',
@@ -10,5 +9,4 @@ void main() async{
     },
   );
   print(response.body);
-
 }
