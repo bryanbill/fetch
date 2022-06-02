@@ -8,5 +8,5 @@ void main() async {
       'userId': 1,
     },
   );
-  print(response.json());
+  print(response.body);
 }

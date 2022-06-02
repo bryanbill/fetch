@@ -16,8 +16,8 @@ class Response {
         connectionInfo: clientResponse.connectionInfo,
         headers: clientResponse.headers);
   }
-
-  dynamic json() {
-    return jsonDecode(body!);
+  dynamic get json => jsonDecode(body!);
+  T to<T>() {
+    return json;
   }
 }

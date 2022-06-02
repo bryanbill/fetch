@@ -28,12 +28,12 @@ void main() async {
   );
   print(response.statusCode);
   print(response.body);
-  
+
   // Delete Method
   response = await 'https://jsonplaceholder.typicode.com/posts/1'.delete();
   print(response.statusCode);
   print(response.body);
- 
+
   // Patch Method
   response = await 'https://jsonplaceholder.typicode.com/posts/1'.patch(
     {
