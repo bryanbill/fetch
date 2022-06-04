@@ -1,8 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:fetchx/src/handlers/activator.handler.dart';
-
 class Response {
   final int? statusCode;
   final String? body;
@@ -19,8 +16,4 @@ class Response {
         headers: clientResponse.headers);
   }
   dynamic get json => jsonDecode(body!);
-  dynamic to<T>() {
-    var activated = Activator.createInstance(T);
-    return activated.fromJson(json);
-  }
 }
