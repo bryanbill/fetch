@@ -5,7 +5,7 @@ void main() async {
 
   Response response = await baseUrl.get();
   Simple simple = response.to<Simple>();
-  print(simple.body);
+  print(simple.id);
 }
 
 class Simple {
@@ -16,8 +16,12 @@ class Simple {
 
   Simple({this.userId, this.id, this.title, this.body});
 
-  set userId(int? userId) => userId = userId;
-  set id(int? id) => id = id;
-  set title(String? title) => title = title;
-  set body(String? body) => body = body;
+  Simple fromJson(Map<String, dynamic> json) {
+    return Simple(
+      userId: json['userId'],
+      id: json['id'],
+      title: json['title'],
+      body: json['body'],
+    );
+  }
 }
