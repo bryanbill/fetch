@@ -14,7 +14,7 @@ To use this package add this to your pubspec.yaml
 
 ```yaml
 dependencies:
-  fetchx: ^0.0.3+alpha
+  fetchx: ^0.0.4
 ```
 
 Then import the package
