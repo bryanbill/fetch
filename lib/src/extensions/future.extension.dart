@@ -6,6 +6,8 @@ extension ToTypeConverter on Future {
     return then((value) => Activator.createInstance(T).fromJson(value.json));
   }
 
+  /// Converts the response to the specified type.
+  /// Returns a list of the specified type.
   Future<List<T>> toList<T>() {
     List<T> _list = [];
     return then((value) {

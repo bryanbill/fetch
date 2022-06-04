@@ -24,7 +24,7 @@ void main() {
     test("Delete Method", () async {
       Response response =
           await "https://jsonplaceholder.typicode.com/posts/1".delete();
-      expect(response.statusCode, isNull);
+      expect(response.statusCode, 200);
     });
   });
 }
