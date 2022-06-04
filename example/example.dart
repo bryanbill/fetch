@@ -1,23 +1,28 @@
+import 'dart:math';
+
 import 'package:fetchx/fetchx.dart';
 
 void main() async {
-  //Get Request
-  get();
+  // //Get Request
+  // get();
 
-  //Put Request
-  put();
+  // //Put Request
+  // put();
 
-  //Post Request
-  post();
+  // //Post Request
+  // post();
 
-  //Patch Request
-  patch();
+  // //Patch Request
+  // patch();
 
-  //Delete Request
-  delete();
+  // //Delete Request
+  // delete();
 
-  //Making Requests and return the model Type
-  getModel();
+  // //Making Requests and return the model Type - Single Model
+  // getModel();
+
+  //Making Requests and return the model Type - List of Model
+  getListModel();
 }
 
 void get() async {
@@ -56,6 +61,18 @@ void getModel() async {
   const String baseUrl = "https://jsonplaceholder.ir/users/1";
   final User user = await baseUrl.get().to<User>();
   print(user.address);
+}
+
+void getListModel() async {
+  const String baseUrl = "https://jsonplaceholder.ir/users";
+  final List<User> users = await baseUrl.get().toList<User>();
+  for (var element in users) {
+    print(element.username);
+  }
+
+  //useful methods
+  //Take only desired number of elements
+  print(users.take(3));
 }
 
 class User extends BaseModel {
@@ -107,7 +124,7 @@ class User extends BaseModel {
   }
 }
 
-class Address extends BaseModel{
+class Address extends BaseModel {
   final String? country;
   final String? city;
   final String? street;
