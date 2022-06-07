@@ -1,3 +1,7 @@
+## 0.0.4+alpha
+
+- Removes dart:mirrors api
+
 ## 0.0.4
 
 - Introduced .to<Type> and .toList<Type> method overload
