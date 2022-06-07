@@ -7,7 +7,7 @@ extension ToTypeConverter on Future {
     return then((value) {
       value = value as Response;
       assert(value.statusCode == 200 && value.body != null, "Request failed");
-    
+
       if (value.json.runtimeType.toString().contains("Map")) {
         return Activator<T>(creator).createInstance().fromJson(value.json);
       } else {

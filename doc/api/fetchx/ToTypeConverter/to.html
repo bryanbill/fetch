@@ -53,7 +53,8 @@
       
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a></span>
-<span class="name ">to</span>&lt;<wbr><span class="type-parameter">T</span>&gt;(<wbr>)
+<span class="name ">to</span>&lt;<wbr><span class="type-parameter">T</span>&gt;(<wbr><ol class="parameter-list"><li><span class="parameter" id="to-param-creator"><span class="type-annotation">dynamic</span> <span class="parameter-name">creator</span></span></li>
+</ol>)
 
       
 
@@ -67,8 +68,17 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;dynamic&gt; to&lt;T&gt;() {
-  return then((value) =&gt; Activator.createInstance(T).fromJson(value.json));
+  <pre class="language-dart"><code class="language-dart">Future&lt;dynamic&gt; to&lt;T&gt;(creator) {
+  return then((value) {
+    value = value as Response;
+    assert(value.statusCode == 200 &amp;&amp; value.body != null, &quot;Request failed&quot;);
+
+    if (value.json.runtimeType.toString().contains(&quot;Map&quot;)) {
+      return Activator&lt;T&gt;(creator).createInstance().fromJson(value.json);
+    } else {
+      throw Exception(&quot;The response is not a map&quot;);
+    }
+  });
 }</code></pre>
 </section>
 
@@ -116,7 +126,7 @@
 <footer>
   <span class="no-break">
     fetchx
-      0.0.4
+      0.0.4+alpha
   </span>
 
   
