@@ -1,4 +1,5 @@
 import 'package:fetchx/src/handlers/activator.handler.dart';
+import 'package:fetchx/src/models/request.model.dart';
 import 'package:fetchx/src/models/response.model.dart';
 
 extension ToTypeConverter on Future {
@@ -13,7 +14,7 @@ extension ToTypeConverter on Future {
       } else {
         throw Exception("The response is not a map");
       }
-    });
+    }).catchError((err) => throw err);
   }
 
   /// Converts the response to the specified type.
@@ -30,6 +31,13 @@ extension ToTypeConverter on Future {
       } else {
         throw Exception("Response is not a list");
       }
+    }).catchError((err) => throw err);
+  }
+
+  Future<Request> request() {
+    return then((value) {
+      assert(value is Response, "Not a Response");
+      return value.request;
     });
   }
 }
