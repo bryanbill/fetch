@@ -1,17 +1,28 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:fetchx/src/models/request.model.dart';
+
 class Response {
   final int? statusCode;
   final String? body;
   final HttpConnectionInfo? connectionInfo;
   final HttpHeaders? headers;
+  final Request request;
 
-  Response({this.statusCode, this.body, this.connectionInfo, this.headers});
+  Response({
+    required this.request,
+    this.statusCode, this.body, this.connectionInfo, this.headers});
 
   /// Maps the client response to [Response]
-  factory Response.fromClient(HttpClientResponse clientResponse, body) {
+  factory Response.fromClient(HttpClientResponse clientResponse, body,
+   {Map<String, dynamic>? originHeaders}) {
     return Response(
+        request: Request(
+          url: clientResponse.headers.host,
+          body: body,
+          headers: originHeaders,
+        ),
         statusCode: clientResponse.statusCode,
         body: body,
         connectionInfo: clientResponse.connectionInfo,
