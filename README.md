@@ -1,23 +1,23 @@
 # Fetchx
 
-A dart/flutter package for making HTTP requests.
+Un package per dart/flutter creato per creare richieste HTTP
 
-## Features
+## Caratteristiche
 - Get
 - Post
 - Put
 - Delete
 - Patch
 
-## Usage
-To use this package add this to your pubspec.yaml
+## Utilizzo
+Per usare il package aggiungi la dipendenza nel tuo file pubspec.yaml
 
 ```yaml
 dependencies:
   fetchx: ^0.0.4
 ```
 
-Then import the package
+Importa poi il package nel tuo file
 
 ```dart
 import 'package:fetchx/fetchx.dart';
