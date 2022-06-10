@@ -3,6 +3,7 @@
 Un package per dart/flutter creato per creare richieste HTTP
 
 ## Caratteristiche
+
 - Get
 - Post
 - Put
@@ -10,6 +11,7 @@ Un package per dart/flutter creato per creare richieste HTTP
 - Patch
 
 ## Utilizzo
+
 Per usare il package aggiungi la dipendenza nel tuo file pubspec.yaml
 
 ```yaml
@@ -33,8 +35,6 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".get();
 
 ### Post
 
-
-
 ```dart
 
 final response = await "https://jsonplaceholder.typicode.com/posts".post({
@@ -46,8 +46,6 @@ final response = await "https://jsonplaceholder.typicode.com/posts".post({
 ```
 
 ### Put
-
-
 
 ```dart
 
@@ -61,8 +59,6 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".put({
 
 ### Delete
 
-
-
 ```dart
 
 final response = await "https://jsonplaceholder.typicode.com/posts/1".delete();
@@ -70,7 +66,6 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".delete();
 ```
 
 ### Patch
-
 
 ```dart
 
