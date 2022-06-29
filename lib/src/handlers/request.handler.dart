@@ -21,6 +21,11 @@ class RequestHandler {
   /// ```
   Future<Response> get() async {
     var request = await HttpClient().getUrl(Uri.parse(url));
+    if (headers != null) {
+      headers?.forEach((key, value) {
+        request.headers.add(key, value);
+      });
+    }
     var response = await request.close();
     return Response.fromClient(
         response, await response.transform(Utf8Decoder()).join());
@@ -40,12 +45,12 @@ class RequestHandler {
     if (isMultipart) {
       request.headers.contentType = ContentType.parse('multipart/form-data');
     }
-    request.add(utf8.encode(json.encode(body)));
     if (headers != null) {
       headers!.forEach((key, value) {
         request.headers.set(key, value);
       });
     }
+    request.add(utf8.encode(json.encode(body)));
     var response = await request.close();
     return Response.fromClient(
         response, await response.transform(Utf8Decoder()).join());
@@ -62,13 +67,12 @@ class RequestHandler {
   /// ```
   Future<Response> put() async {
     var request = await HttpClient().putUrl(Uri.parse(url));
-    request.add(utf8.encode(json.encode(body)));
-
     if (headers != null) {
       headers!.forEach((key, value) {
         request.headers.set(key, value);
       });
     }
+    request.add(utf8.encode(json.encode(body)));
     var response = await request.close();
     return Response.fromClient(
         response, await response.transform(Utf8Decoder()).join());
@@ -84,12 +88,14 @@ class RequestHandler {
   /// ```
   Future<Response> delete() async {
     var request = await HttpClient().deleteUrl(Uri.parse(url));
-    request.add(utf8.encode(json.encode(body)));
+
     if (headers != null) {
       headers!.forEach((key, value) {
         request.headers.set(key, value);
       });
     }
+
+    request.add(utf8.encode(json.encode(body)));
     var response = await request.close();
     return Response.fromClient(
         response, await response.transform(Utf8Decoder()).join());
@@ -106,12 +112,13 @@ class RequestHandler {
   /// ```
   Future<Response> patch() async {
     var request = await HttpClient().patchUrl(Uri.parse(url));
-    request.add(utf8.encode(json.encode(body)));
+
     if (headers != null) {
       headers!.forEach((key, value) {
         request.headers.set(key, value);
       });
     }
+    request.add(utf8.encode(json.encode(body)));
     var response = await request.close();
     return Response.fromClient(
         response, await response.transform(Utf8Decoder()).join());

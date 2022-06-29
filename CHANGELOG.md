@@ -1,3 +1,7 @@
+## 0.0.5
+- Fixed a bug where headers were sometimes immutable.
+- Added exception handler for .to() and .toList().
+
 ## 0.0.4
 
 - Introduced .to<Type> and .toList<Type> method overload
