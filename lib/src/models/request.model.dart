@@ -2,7 +2,7 @@ class Request {
   final Map<String, dynamic>? headers;
   final bool isMultipart;
   final String? url;
-  final Map<String, dynamic>? body;
+  final dynamic body;
   final String method;
 
   Request({

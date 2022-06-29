@@ -17,7 +17,7 @@ class Activator<T> {
   /// }
   /// }
   /// ...
-  /// Activator<MyClass> activator = 
+  /// Activator<MyClass> activator =
   /// new Activator<MyClass>(() => new MyClass()).createInstance();
   /// ```
   createInstance() => creator();

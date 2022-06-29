@@ -81,7 +81,7 @@ Returns a list of the specified type.</p>
     } else {
       throw Exception(&quot;Response is not a list&quot;);
     }
-  });
+  }).catchError((err) =&gt; throw err);
 }</code></pre>
 </section>
 
@@ -111,6 +111,7 @@ Returns a list of the specified type.</p>
 
 
     <li class="section-title"><a href="../../fetchx/ToTypeConverter.html#instance-methods">Methods</a></li>
+    <li><a href="../../fetchx/ToTypeConverter/request.html">request</a></li>
     <li><a href="../../fetchx/ToTypeConverter/to.html">to</a></li>
     <li><a href="../../fetchx/ToTypeConverter/toList.html">toList</a></li>
 
@@ -129,7 +130,7 @@ Returns a list of the specified type.</p>
 <footer>
   <span class="no-break">
     fetchx
-      0.0.4+alpha
+      0.0.5
   </span>
 
   

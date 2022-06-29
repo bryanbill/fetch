@@ -10,13 +10,16 @@ class Response {
   final HttpHeaders? headers;
   final Request request;
 
-  Response({
-    required this.request,
-    this.statusCode, this.body, this.connectionInfo, this.headers});
+  Response(
+      {required this.request,
+      this.statusCode,
+      this.body,
+      this.connectionInfo,
+      this.headers});
 
   /// Maps the client response to [Response]
   factory Response.fromClient(HttpClientResponse clientResponse, body,
-   {Map<String, dynamic>? originHeaders}) {
+      {Map<String, dynamic>? originHeaders}) {
     return Response(
         request: Request(
           url: clientResponse.headers.host,
