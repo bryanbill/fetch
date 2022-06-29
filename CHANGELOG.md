@@ -1,4 +1,5 @@
 ## 0.0.5
+
 - Fixed a bug where headers were sometimes immutable.
 - Added exception handler for .to() and .toList().
 
