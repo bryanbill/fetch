@@ -53,7 +53,8 @@
       
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span></span>
-<span class="name ">toList</span>&lt;<wbr><span class="type-parameter">T</span>&gt;(<wbr>)
+<span class="name ">toList</span>&lt;<wbr><span class="type-parameter">T</span>&gt;(<wbr><ol class="parameter-list"><li><span class="parameter" id="toList-param-creator"><span class="type-annotation">dynamic</span> <span class="parameter-name">creator</span></span></li>
+</ol>)
 
       
 
@@ -68,13 +69,18 @@ Returns a list of the specified type.</p>
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;List&lt;T&gt;&gt; toList&lt;T&gt;() {
+  <pre class="language-dart"><code class="language-dart">Future&lt;List&lt;T&gt;&gt; toList&lt;T&gt;(creator) {
   List&lt;T&gt; _list = [];
   return then((value) {
-    value.json.forEach((element) {
-      _list.add(Activator.createInstance(T).fromJson(element));
-    });
-    return _list;
+    assert(value is Response, &quot;Not a Response&quot;);
+    if (value.statusCode == 200 &amp;&amp; value.json.runtimeType == List) {
+      value.json.forEach((element) {
+        _list.add(Activator&lt;T&gt;(creator).createInstance().fromJson(element));
+      });
+      return _list;
+    } else {
+      throw Exception(&quot;Response is not a list&quot;);
+    }
   });
 }</code></pre>
 </section>
@@ -123,7 +129,7 @@ Returns a list of the specified type.</p>
 <footer>
   <span class="no-break">
     fetchx
-      0.0.4
+      0.0.4+alpha
   </span>
 
   

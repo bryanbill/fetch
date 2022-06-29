@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:fetchx/src/models/response.model.dart';
 
 class RequestHandler {
