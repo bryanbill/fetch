@@ -4,8 +4,8 @@ Fetchx is a simple, fast, and secure HTTP client for Dart. It leverages extensio
 
 ## Table of contents
 
-
 ## Features
+
 - Get
 - Post
 - Put
@@ -13,6 +13,7 @@ Fetchx is a simple, fast, and secure HTTP client for Dart. It leverages extensio
 - Patch
 
 ## Usage
+
 To use this package add this to your pubspec.yaml
 
 ```yaml
@@ -36,8 +37,6 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".get();
 
 ### Post
 
-
-
 ```dart
 
 final response = await "https://jsonplaceholder.typicode.com/posts".post({
@@ -49,8 +48,6 @@ final response = await "https://jsonplaceholder.typicode.com/posts".post({
 ```
 
 ### Put
-
-
 
 ```dart
 
@@ -64,8 +61,6 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".put({
 
 ### Delete
 
-
-
 ```dart
 
 final response = await "https://jsonplaceholder.typicode.com/posts/1".delete();
@@ -73,7 +68,6 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".delete();
 ```
 
 ### Patch
-
 
 ```dart
 
