@@ -1,8 +1,11 @@
 # Fetchx
 
-A dart/flutter package for making HTTP requests.
+Fetchx is a simple, fast, and secure HTTP client for Dart. It leverages extensions to allow using url-like strings to make http requests.
+
+## Table of contents
 
 ## Features
+
 - Get
 - Post
 - Put
@@ -10,11 +13,12 @@ A dart/flutter package for making HTTP requests.
 - Patch
 
 ## Usage
+
 To use this package add this to your pubspec.yaml
 
 ```yaml
 dependencies:
-  fetchx: ^0.0.4
+  fetchx: ^0.0.5
 ```
 
 Then import the package
@@ -33,8 +37,6 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".get();
 
 ### Post
 
-
-
 ```dart
 
 final response = await "https://jsonplaceholder.typicode.com/posts".post({
@@ -46,8 +48,6 @@ final response = await "https://jsonplaceholder.typicode.com/posts".post({
 ```
 
 ### Put
-
-
 
 ```dart
 
@@ -61,8 +61,6 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".put({
 
 ### Delete
 
-
-
 ```dart
 
 final response = await "https://jsonplaceholder.typicode.com/posts/1".delete();
@@ -70,7 +68,6 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".delete();
 ```
 
 ### Patch
-
 
 ```dart
 

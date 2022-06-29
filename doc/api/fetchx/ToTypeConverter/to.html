@@ -8,16 +8,16 @@
   <title>to method - ToTypeConverter extension - fetchx library - Dart API</title>
 
 
-  
+
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="../../static-assets/github.css?v1">
   <link rel="stylesheet" href="../../static-assets/styles.css?v1">
   <link rel="icon" href="../../static-assets/favicon.png?v1">
 
-  
+
 </head>
 
 
@@ -45,30 +45,40 @@
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-method">to&lt;<wbr><span class="type-parameter">T</span>&gt;</span> method 
+<h1><span class="kind-method">to&lt;<wbr><span class="type-parameter">T</span>&gt;</span> method
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
     <section class="multi-line-signature">
-      
+
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a></span>
-<span class="name ">to</span>&lt;<wbr><span class="type-parameter">T</span>&gt;(<wbr>)
+<span class="name ">to</span>&lt;<wbr><span class="type-parameter">T</span>&gt;(<wbr><ol class="parameter-list"><li><span class="parameter" id="to-param-creator"><span class="type-annotation">dynamic</span> <span class="parameter-name">creator</span></span></li>
+</ol>)
 
-      
+
 
     </section>
-    
+
 <section class="desc markdown">
   <p>Converts the response to the specified type.</p>
 </section>
 
 
-    
+
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;dynamic&gt; to&lt;T&gt;() {
-  return then((value) =&gt; Activator.createInstance(T).fromJson(value.json));
+  <pre class="language-dart"><code class="language-dart">Future&lt;dynamic&gt; to&lt;T&gt;(creator) {
+  return then((value) {
+    value = value as Response;
+    assert(value.statusCode == 200 &amp;&amp; value.body != null, &quot;Request failed&quot;);
+
+    if (value.json.runtimeType.toString().contains(&quot;Map&quot;)) {
+      return Activator&lt;T&gt;(creator).createInstance().fromJson(value.json);
+    } else {
+      throw Exception(&quot;The response is not a map&quot;);
+    }
+  }).catchError((err) =&gt; throw err);
 }</code></pre>
 </section>
 
@@ -98,6 +108,7 @@
 
 
     <li class="section-title"><a href="../../fetchx/ToTypeConverter.html#instance-methods">Methods</a></li>
+    <li><a href="../../fetchx/ToTypeConverter/request.html">request</a></li>
     <li><a href="../../fetchx/ToTypeConverter/to.html">to</a></li>
     <li><a href="../../fetchx/ToTypeConverter/toList.html">toList</a></li>
 
@@ -116,10 +127,10 @@
 <footer>
   <span class="no-break">
     fetchx
-      0.0.4
+      0.0.5
   </span>
 
-  
+
 </footer>
 
 
@@ -132,4 +143,3 @@
 </body>
 
 </html>
-

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:fetchx/fetchx.dart';
 
 void main() async {
@@ -59,13 +57,13 @@ void delete() async {
 
 void getModel() async {
   const String baseUrl = "https://jsonplaceholder.ir/users/1";
-  final User user = await baseUrl.get().to<User>();
-  print(user.address);
+  final User user = await baseUrl.get().to<User>(() => User());
+  print(user.address!.alley);
 }
 
 void getListModel() async {
   const String baseUrl = "https://jsonplaceholder.ir/users";
-  final List<User> users = await baseUrl.get().toList<User>();
+  final List<User> users = await baseUrl.get().toList<User>(() => User());
   for (var element in users) {
     print(element.username);
   }
