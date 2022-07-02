@@ -33,5 +33,5 @@ class Response {
   }
 
   /// Returns the json object of the body from [Response].
-  dynamic get json => jsonDecode(body!);
+  dynamic get json => body != null ? jsonDecode(body!) : null;
 }
