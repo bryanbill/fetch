@@ -40,7 +40,7 @@ void post() async {
   const String baseUrl = "https://jsonplaceholder.ir/posts";
   final Response response =
       await baseUrl.post({"title": "foo", "body": "bar", "userId": 4});
-  
+
   print(response.json);
 }
 
