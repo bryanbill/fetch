@@ -37,7 +37,7 @@ extension ToTypeConverter on Future {
   Future<Request> request() {
     return then((value) {
       assert(value is Response, "Not a Response");
-      return value.request;
-    });
+      return (value as Response).request;
+    }).catchError((er) => throw er);
   }
 }

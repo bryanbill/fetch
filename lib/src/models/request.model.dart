@@ -1,4 +1,5 @@
-class Request {
+
+class Request{
   final Map<String, dynamic>? headers;
   final bool isMultipart;
   final String? url;
