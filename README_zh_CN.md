@@ -85,5 +85,5 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".patch({
 
 This README is available in other languages:
 
-- [English](README.md) 
+- [English](README.md)
 - [简体中文](README_zh_CN.md)
