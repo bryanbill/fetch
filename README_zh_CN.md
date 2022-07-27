@@ -1,7 +1,8 @@
 # Fetchx
 
 Fetchx 是一个基本 Dart 语言的 简单, 快速, 以及安全的 HTTP 客户端. 它利用扩展允许使用类似 URL 的字符串来发出 HTTP 请求。
-[English](README.md) [中文](README_zh_CN.md)
+
+[Read in another language](#translations)
 
 ## Table of contents
 
@@ -79,3 +80,11 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".patch({
 });
 
 ```
+
+## Translations (翻译)
+
+This README is available in other languages:
+
+- [English](README.md) 
+- [简体中文](README_zh_CN.md)
+- 
