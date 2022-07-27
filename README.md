@@ -2,6 +2,8 @@
 
 Fetchx is a simple, fast, and secure HTTP client for Dart. It leverages extensions to allow using url-like strings to make http requests.
 
+[Read in another language](#translations)
+
 ## Table of contents
 
 ## Features
@@ -76,3 +78,11 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".patch({
 });
 
 ```
+
+## Translations
+
+This README is available in other languages:
+
+- [English](README.md) 
+- [简体中文](README_zh_CN.md)
+
