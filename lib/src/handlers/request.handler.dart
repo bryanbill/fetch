@@ -27,7 +27,8 @@ class RequestHandler {
     }
     var response = await request.close();
     return Response.fromClient(
-        response, await response.transform(Utf8Decoder()).join());
+        response, await response.transform(Utf8Decoder()).join(),
+        origin: url);
   }
 
   /// Returns a [Response] object with the response from the server.

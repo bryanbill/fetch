@@ -8,7 +8,7 @@ class Response {
   final String? body;
   final HttpConnectionInfo? connectionInfo;
   final HttpHeaders? headers;
-  final Request request;
+  final Request? request;
 
   Response(
       {required this.request,
@@ -19,10 +19,10 @@ class Response {
 
   /// Maps the client response to [Response]
   factory Response.fromClient(HttpClientResponse clientResponse, body,
-      {Map<String, dynamic>? originHeaders}) {
+      {Map<String, dynamic>? originHeaders, String? origin}) {
     return Response(
         request: Request(
-          url: clientResponse.headers.host,
+          url: origin,
           body: body,
           headers: originHeaders,
         ),

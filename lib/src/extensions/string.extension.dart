@@ -1,5 +1,6 @@
 import 'package:fetchx/src/handlers/request.handler.dart';
 import 'package:fetchx/src/models/response.model.dart';
+import 'package:hive/hive.dart';
 
 extension RequestParsing on String {
   /// Returns a [Response] object with the response from the server.
@@ -66,5 +67,41 @@ extension RequestParsing on String {
   /// ```
   Future<Response> patch(Object body, {Map<String, dynamic>? headers}) async {
     return await RequestHandler(this, body: body, headers: headers).patch();
+  }
+
+  Future<Response?> cache(
+      {bool? preferNetwork = true,
+      String? path = "fetchx_cache",
+      Map<String, dynamic>? headers}) async {
+    Hive.init(path);
+    late Response response;
+    // Check if preferNetwork is set to true
+    if (preferNetwork!) {
+      response = await get(headers: headers);
+      if (response.statusCode == 200) {
+        // Save to cache
+        await Hive.openBox('cache');
+        await Hive.box('cache').put(this, {
+          'body': response.body,
+          'statusCode': response.statusCode,
+        });
+        Hive.close();
+        return response;
+      }
+    }
+    // Check network first
+    return await Hive.openBox('cache').then((box) {
+      final cachedResponse = box.get(this);
+      if (cachedResponse != null) {
+        return Response(
+          body: cachedResponse['body'],
+          headers: response.headers,
+          statusCode: cachedResponse['statusCode'],
+          request: response.request,
+        );
+      }
+      print("Cache is empty");
+      return null;
+    });
   }
 }
