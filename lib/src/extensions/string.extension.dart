@@ -71,9 +71,9 @@ extension RequestParsing on String {
 
   Future<Response?> cache(
       {bool? preferNetwork = true,
-      String? path,
+      String? path = "fetchx_cache",
       Map<String, dynamic>? headers}) async {
-    Hive.init(path ?? "fetchx_cache");
+    Hive.init(path);
     late Response response;
     // Check if preferNetwork is set to true
     if (preferNetwork!) {

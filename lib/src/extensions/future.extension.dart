@@ -1,6 +1,9 @@
+import 'dart:isolate';
+
 import 'package:fetchx/src/handlers/activator.handler.dart';
 import 'package:fetchx/src/models/request.model.dart';
 import 'package:fetchx/src/models/response.model.dart';
+import 'package:hive/hive.dart';
 
 // Can't create a quard clause on the "supposed" convertible type.
 // The idea is that even "onError", that should be convertible to the provided type
@@ -51,11 +54,28 @@ extension ToTypeConverter on Future {
     }).catchError((er) => throw er);
   }
 
-  Future<void> cache() {
+  Future<Response> cache({String? path = "fetchx_cache", int? maxAge}) {
     return then((value) {
       // Cache the response
-      value = value as Response;
-      
+      var v = value as Response;
+      // Cache the response v in an isolate
+      final port = ReceivePort();
+      Isolate.spawn(_cache, [v, path, maxAge, port.sendPort]);
+      return v;
     }).catchError((er) => throw er);
+  }
+
+  void _cache(List input) async {
+    final SendPort send = input[3];
+    final Response v = input[0];
+    final String path = input[1];
+    final int? maxAge = input[2];
+    Hive.init(path);
+    final box = await Hive.openBox("cache");
+    box.put(v.request!.url, {
+      'body': v.body,
+      'statusCode': v.statusCode,
+    });
+    send.send("done");
   }
 }
