@@ -45,9 +45,17 @@ extension ToTypeConverter on Future {
   }
 
   @Deprecated("Use Response().request instead")
-  Future<Request> request() {
+  Future<Request?> request() {
     return then((value) {
       return (value as Response).request;
+    }).catchError((er) => throw er);
+  }
+
+  Future<void> cache() {
+    return then((value) {
+      // Cache the response
+      value = value as Response;
+      
     }).catchError((er) => throw er);
   }
 }

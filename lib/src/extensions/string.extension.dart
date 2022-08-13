@@ -69,20 +69,27 @@ extension RequestParsing on String {
     return await RequestHandler(this, body: body, headers: headers).patch();
   }
 
-  Future<Response?> cache({String? path, Map<String, dynamic>? headers}) async {
-    Hive.init(path?? "fetchx_cache");
-    // Check network first
-    final response = await get(headers: headers);
-    if (response.statusCode == 200) {
-      // Save to cache
-      await Hive.openBox('cache');
-      await Hive.box('cache').put(this, {
-        'body': response.body,
-        'statusCode': response.statusCode,
-      });
-      Hive.close();
-      return response;
+  Future<Response?> cache(
+      {bool? preferNetwork = true,
+      String? path,
+      Map<String, dynamic>? headers}) async {
+    Hive.init(path ?? "fetchx_cache");
+    late Response response;
+    // Check if preferNetwork is set to true
+    if (preferNetwork!) {
+      response = await get(headers: headers);
+      if (response.statusCode == 200) {
+        // Save to cache
+        await Hive.openBox('cache');
+        await Hive.box('cache').put(this, {
+          'body': response.body,
+          'statusCode': response.statusCode,
+        });
+        Hive.close();
+        return response;
+      }
     }
+    // Check network first
     return await Hive.openBox('cache').then((box) {
       final cachedResponse = box.get(this);
       if (cachedResponse != null) {

@@ -8,7 +8,7 @@ class Response {
   final String? body;
   final HttpConnectionInfo? connectionInfo;
   final HttpHeaders? headers;
-  final Request request;
+  final Request? request;
 
   Response(
       {required this.request,
