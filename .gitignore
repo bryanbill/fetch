@@ -11,3 +11,6 @@ pubspec.lock
 
 # Omit docs for library packages
 docs/
+
+# Omit fetchx_cache for library packages
+fetchx_cache/

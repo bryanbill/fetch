@@ -54,6 +54,12 @@ extension ToTypeConverter on Future {
     }).catchError((er) => throw er);
   }
 
+  /// Caches the response in the local storage.
+  /// Caching happens in an isolate.
+  /// Example:
+  /// ```dart
+  /// final response = await "https://example.com/api/v1/users/1".get().cache();
+  /// ```
   Future<Response> cache({String? path = "fetchx_cache", int? maxAge}) {
     return then((value) {
       // Cache the response

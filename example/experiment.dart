@@ -5,9 +5,9 @@ void main(List<String> args) async {
       "," +
       DateTime.now().millisecond.toString());
   Response? response =
-      await "https://jsonplaceholder.typicode.com/users/1".cache(path: "fetchx_caches/");
+      await "https://jsonplaceholder.typicode.com/users/1".get().cache();
 
-  print(response!.json);
+  print(response.json);
 
   print(DateTime.now().second.toString() +
       "," +
