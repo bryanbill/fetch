@@ -1,7 +1,6 @@
 import 'package:fetchx/fetchx.dart';
 
 void main() async {
-
   //Get Request
   get();
 
@@ -60,7 +59,7 @@ void delete() async {
 void getModel() async {
   const String baseUrl = "https://jsonplaceholder.ir/users/1";
    var  user = await baseUrl.get().to<User>(() => User());
-   
+
   print(user.address!.alley);
 }
 
