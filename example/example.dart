@@ -58,7 +58,8 @@ void delete() async {
 
 void getModel() async {
   const String baseUrl = "https://jsonplaceholder.ir/users/1";
-  final User user = await baseUrl.get().to<User>(() => User());
+   var  user = await baseUrl.get().to<User>(() => User());
+   
   print(user.address!.alley);
 }
 

@@ -10,12 +10,13 @@ import 'package:hive/hive.dart';
 extension ToTypeConverter on Future {
   /// Converts the response to the specified type.
 
-  Future<dynamic> to<T>(creator) {
+  Future<T> to<T extends Object>(creator) {
     return then((value) {
       try {
         value = value as Response;
         if (value.json.runtimeType.toString().contains("Map")) {
-          return Activator<T>(creator).createInstance().fromJson(value.json);
+          return Activator<T>(creator).createInstance().fromJson(value.json)
+              as T;
         } else {
           throw Exception("The response is not a map");
         }
@@ -28,7 +29,7 @@ extension ToTypeConverter on Future {
 
   /// Converts the response to the specified type.
   /// Returns a list of the specified type.
-  Future<List<T>> toList<T>(creator) {
+  Future<List<T>> toList<T extends Object>(creator) {
     List<T> _list = [];
     return then((value) {
       try {
@@ -54,8 +55,12 @@ extension ToTypeConverter on Future {
     }).catchError((er) => throw er);
   }
 
+  /// NOTE: This method is still in experimental phase.
+  ///
   /// Caches the response in the local storage.
-  /// Caching happens in an isolate.
+  ///
+  /// Caching happens in an isolate so that the main thread is not blocked.
+  ///
   /// Example:
   /// ```dart
   /// final response = await "https://example.com/api/v1/users/1".get().cache();
@@ -72,16 +77,20 @@ extension ToTypeConverter on Future {
   }
 
   void _cache(List input) async {
-    final SendPort send = input[3];
-    final Response v = input[0];
-    final String path = input[1];
-    final int? maxAge = input[2];
-    Hive.init(path);
-    final box = await Hive.openBox("cache");
-    box.put(v.request!.url, {
-      'body': v.body,
-      'statusCode': v.statusCode,
-    });
-    send.send("done");
+    try {
+      final SendPort send = input[3];
+      final Response v = input[0];
+      final String path = input[1];
+      final int? maxAge = input[2];
+      Hive.init(path);
+      final box = await Hive.openBox("cache");
+      box.put(v.request!.url, {
+        'body': v.body,
+        'statusCode': v.statusCode,
+      });
+      send.send("done");
+    } catch (e) {
+      print(e);
+    }
   }
 }
