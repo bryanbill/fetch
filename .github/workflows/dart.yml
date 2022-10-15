@@ -8,8 +8,6 @@ name: Dart
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
   build:
@@ -45,7 +43,7 @@ jobs:
         run: dart format --set-exit-if-changed --dry-run .
 
       - name: Generate docs
-        run: dartdoc
+        run: dart doc
 
       - name: Setup credentials
         run: |

@@ -1,7 +1,6 @@
 import 'package:fetchx/fetchx.dart';
 
 void main() async {
-
   //Get Request
   get();
 
