@@ -1,7 +1,8 @@
-## 0.0.5-dev.1
+## 0.0.6-dev.1
 
 - Added experimental cache support for `get` method.
 - Added query builder support from maps
+- Removed `request()` method. Use Response().request() instead.
 
 ## 0.0.5
 

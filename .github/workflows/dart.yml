@@ -59,4 +59,4 @@ jobs:
           EOF
 
       - name: Publish package
-        run: dart pub publish
+        run: dart pub publish --force

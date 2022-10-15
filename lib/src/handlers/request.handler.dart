@@ -8,10 +8,12 @@ class RequestHandler {
   final Map<String, dynamic>? headers;
   final bool isMultipart;
   final Map<String, dynamic>? queryParameters;
+  final String? path;
 
   RequestHandler(this.url,
       {this.body,
       this.headers,
+      this.path,
       this.isMultipart = false,
       this.queryParameters});
 
@@ -27,6 +29,9 @@ class RequestHandler {
     Uri uri = Uri.parse(url);
     if (queryParameters != null) {
       uri = uri.replace(queryParameters: queryParameters);
+    }
+    if (path != null) {
+      uri = uri.replace(path: path);
     }
     return uri;
   }

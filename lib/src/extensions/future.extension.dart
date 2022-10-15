@@ -1,7 +1,6 @@
 import 'dart:isolate';
 
 import 'package:fetchx/src/handlers/activator.handler.dart';
-import 'package:fetchx/src/models/request.model.dart';
 import 'package:fetchx/src/models/response.model.dart';
 import 'package:hive/hive.dart';
 
@@ -48,13 +47,6 @@ extension ToTypeConverter on Future {
     }).catchError((err) => throw err);
   }
 
-  @Deprecated("Use Response().request instead")
-  Future<Request?> request() {
-    return then((value) {
-      return (value as Response).request;
-    }).catchError((er) => throw er);
-  }
-
   /// NOTE: This method is still in experimental phase.
   ///
   /// Caches the response in the local storage.
@@ -65,7 +57,7 @@ extension ToTypeConverter on Future {
   /// ```dart
   /// final response = await "https://example.com/api/v1/users/1".get().cache();
   /// ```
-  Future<Response> cache({String? path = "fetchx_cache", int? maxAge}) {
+  Future<Response> cache({String? path = "fetchx_cache", int? maxAge = 0}) {
     return then((value) {
       // Cache the response
       var v = value as Response;
@@ -86,6 +78,7 @@ extension ToTypeConverter on Future {
       final box = await Hive.openBox("cache");
       box.put(v.request!.url, {
         'body': v.body,
+        'maxAge': maxAge,
         'statusCode': v.statusCode,
       });
       send.send("done");
