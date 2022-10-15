@@ -32,9 +32,25 @@ void main() async {
   //print(response5.statusCode);
 
   // EXPERIMENTAL
+
   // Simple GET request with cache - {Store the response in a local database - The URI is the key}
   final response6 = await _baseUrl.get(path: "users/1").cache();
   //print(response6.json);
 
- ;
+  // Simple GET request with Model object conversion
+  final response7 = await "https://jsonplaceholder.typicode.com/users/1"
+      .get()
+      .to<User>(() => User());
+  print(response7.name);
+}
+
+class User extends BaseModel {
+  final int? id;
+  final String? name;
+  User({this.id, this.name});
+
+  @override
+  User fromJson(Map<String, dynamic> json) {
+    return User(id: json['id'], name: json['name']);
+  }
 }
