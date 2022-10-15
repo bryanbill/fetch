@@ -11,8 +11,13 @@ extension RequestParsing on String {
   /// ```dart
   /// Response response = await "https://www.google.com".get();
   /// ```
-  Future<Response> get({Map<String, dynamic>? headers}) async {
-    return await RequestHandler(this, headers: headers).get();
+  Future<Response> get(
+      {Map<String, dynamic>? headers,
+      String? path,
+      Map<String, dynamic>? queryParams}) async {
+    return await RequestHandler(this,
+            path: path, headers: headers, queryParameters: queryParams)
+        .get();
   }
 
   /// Returns a [Response] object with the response from the server.
@@ -26,8 +31,10 @@ extension RequestParsing on String {
   ///                     headers: {'content-type': 'application/json'})
   ///                     .post();
   /// ```
-  Future<Response> post(Object body, {Map<String, dynamic>? headers}) async {
-    return await RequestHandler(this, body: body, headers: headers).post();
+  Future<Response> post(Object body,
+      {Map<String, dynamic>? headers, String? path}) async {
+    return await RequestHandler(this, body: body, headers: headers, path: path)
+        .post();
   }
 
   /// Returns a [Response] object with the response from the server.
@@ -40,8 +47,10 @@ extension RequestParsing on String {
   ///                   headers: {'content-type': 'application/json'})
   ///                  .put();
   /// ```
-  Future<Response> put(Object body, {Map<String, dynamic>? headers}) async {
-    return await RequestHandler(this, body: body, headers: headers).put();
+  Future<Response> put(Object body,
+      {Map<String, dynamic>? headers, String? path}) async {
+    return await RequestHandler(this, body: body, headers: headers, path: path)
+        .put();
   }
 
   /// Returns a [Response] object with the response from the server.
@@ -51,8 +60,10 @@ extension RequestParsing on String {
   /// ```dart
   /// final response = await "https://example.com/api/v1/users/1".delete();
   /// ```
-  Future<Response> delete({Object? body, Map<String, dynamic>? headers}) async {
-    return await RequestHandler(this, headers: headers, body: body).delete();
+  Future<Response> delete(
+      {Object? body, Map<String, dynamic>? headers, String? path}) async {
+    return await RequestHandler(this, headers: headers, body: body, path: path)
+        .delete();
   }
 
   /// Returns a [Response] object with the response from the server.
@@ -65,8 +76,10 @@ extension RequestParsing on String {
   ///                   headers: {'content-type': 'application/json'})
   ///                  .patch();
   /// ```
-  Future<Response> patch(Object body, {Map<String, dynamic>? headers}) async {
-    return await RequestHandler(this, body: body, headers: headers).patch();
+  Future<Response> patch(Object body,
+      {Map<String, dynamic>? headers, String? path}) async {
+    return await RequestHandler(this, body: body, headers: headers, path: path)
+        .patch();
   }
 
   Future<Response?> cache(
