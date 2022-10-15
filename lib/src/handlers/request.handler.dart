@@ -7,8 +7,29 @@ class RequestHandler {
   final Object? body;
   final Map<String, dynamic>? headers;
   final bool isMultipart;
+  final Map<String, dynamic>? queryParameters;
 
-  RequestHandler(this.url, {this.body, this.headers, this.isMultipart = false});
+  RequestHandler(this.url,
+      {this.body,
+      this.headers,
+      this.isMultipart = false,
+      this.queryParameters});
+
+  /// Builds the URI from the provided URL and query parameters.
+  ///
+  /// Example:
+  /// ```dart
+  ///
+  /// final uri = RequestHandler("https://example.com/api/v1/users/1", queryParameters: {"id": 1}).buildUri();
+  ///
+  /// ```
+  Uri get getUri {
+    Uri uri = Uri.parse(url);
+    if (queryParameters != null) {
+      uri = uri.replace(queryParameters: queryParameters);
+    }
+    return uri;
+  }
 
   /// Returns a [Response] object with the response from the server.
   ///
@@ -19,7 +40,7 @@ class RequestHandler {
   /// Response response = await RequestHandler('https://www.google.com').get();
   /// ```
   Future<Response> get() async {
-    var request = await HttpClient().getUrl(Uri.parse(url));
+    var request = await HttpClient().getUrl(getUri);
     if (headers != null) {
       headers?.forEach((key, value) {
         request.headers.add(key, value);
@@ -41,7 +62,7 @@ class RequestHandler {
   ///                        {'name': 'John Doe'}).post();
   /// ```
   Future<Response> post() async {
-    var request = await HttpClient().postUrl(Uri.parse(url));
+    var request = await HttpClient().postUrl(getUri);
     if (isMultipart) {
       request.headers.contentType = ContentType.parse('multipart/form-data');
     }
@@ -66,7 +87,7 @@ class RequestHandler {
   ///                        .put();
   /// ```
   Future<Response> put() async {
-    var request = await HttpClient().putUrl(Uri.parse(url));
+    var request = await HttpClient().putUrl(getUri);
     if (headers != null) {
       headers!.forEach((key, value) {
         request.headers.set(key, value);
@@ -87,7 +108,7 @@ class RequestHandler {
   ///                        .delete();
   /// ```
   Future<Response> delete() async {
-    var request = await HttpClient().deleteUrl(Uri.parse(url));
+    var request = await HttpClient().deleteUrl(getUri);
 
     if (headers != null) {
       headers!.forEach((key, value) {
@@ -111,7 +132,7 @@ class RequestHandler {
   ///                        .patch();
   /// ```
   Future<Response> patch() async {
-    var request = await HttpClient().patchUrl(Uri.parse(url));
+    var request = await HttpClient().patchUrl(getUri);
 
     if (headers != null) {
       headers!.forEach((key, value) {
