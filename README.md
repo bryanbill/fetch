@@ -79,6 +79,39 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".patch({
 
 ```
 
+## EXPERIMENTAL
+
+These features are still experimental and may change in the future. Any feedback is welcome to improve the package.
+
+### To Model Casting
+
+```dart
+class User extends BaseModel{
+  final int? id;
+  final String? name;
+  User({
+     this.id,
+     this.name
+  });
+
+  @override
+  User fromJson(Map<String, dynamic> json) => User(
+        id: json["id"],
+        name: json["name"]
+      );
+}
+
+final response = await "https://jsonplaceholder.typicode.com/users/1".get().to<User>(()=>User());
+print(response.name);
+
+```
+
+### Cache
+
+```dart
+final response = await "https://jsonplaceholder.typicode.com/posts/1".get().cache();
+```
+
 ## Translations
 
 This README is available in other languages:

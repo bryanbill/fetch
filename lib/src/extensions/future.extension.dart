@@ -1,7 +1,6 @@
 import 'dart:isolate';
 
 import 'package:fetchx/src/handlers/activator.handler.dart';
-import 'package:fetchx/src/models/request.model.dart';
 import 'package:fetchx/src/models/response.model.dart';
 import 'package:hive/hive.dart';
 
