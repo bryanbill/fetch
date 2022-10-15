@@ -1,3 +1,8 @@
+## 0.0.5-dev.1
+- Added experimental cache support for `get` method.
+- Added query builder support from maps
+
+
 ## 0.0.5
 
 - Fixed a bug where headers were sometimes immutable.
