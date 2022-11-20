@@ -149,4 +149,57 @@ class RequestHandler {
     return Response.fromClient(
         response, await response.transform(Utf8Decoder()).join());
   }
+
+  /// Returns a [Response] object with the response from the server.
+  /// Example:
+  /// ```dart
+  /// final response = await RequestHandler('https://example.com/api/v1/users/1',
+  ///                       {'name': 'John Doe'})
+  ///                      .head();
+  /// ```
+
+  Future<Response> head() async {
+    var request = await HttpClient().headUrl(getUri);
+
+    if (headers != null) {
+      headers!.forEach((key, value) {
+        request.headers.set(key, value);
+      });
+    }
+    var response = await request.close();
+    return Response.fromClient(
+        response, await response.transform(Utf8Decoder()).join());
+  }
+
+  /// Returns a [File] object with the response from the server.
+  /// Example:
+  /// ```dart
+  /// final response = await RequestHandler('https://example.com/api/v1/users/1',
+  ///                      {'name': 'John Doe'})
+  ///                     .download();
+  /// ```
+  /// The file will be downloaded to the current directory.
+
+  Future<File> download({String? filePath}) async {
+    var request = await HttpClient().getUrl(getUri);
+    if (headers != null) {
+      headers!.forEach((key, value) {
+        request.headers.set(key, value);
+      });
+    }
+    var response = await request.close();
+    var contentType = response.headers.contentType;
+    var extension = contentType?.mimeType.split('/').last;
+    var fileName =
+        filePath ?? '${DateTime.now().millisecondsSinceEpoch}.$extension';
+    return await response
+        .pipe(File(fileName).openWrite())
+        .then((value) => value as File);
+  }
+
+  @override
+  String toString() {
+    return 'RequestHandler{url: $url, body: $body, headers: $headers, isMultipart: $isMultipart}';
+  }
+
 }

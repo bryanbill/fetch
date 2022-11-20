@@ -6,12 +6,6 @@
       "request": "launch",
       "type": "dart",
       "program": "example/example.dart"
-    },
-    {
-      "name": "experimental ",
-      "request": "launch",
-      "type": "dart",
-      "program": "example/experiment.dart"
     }
   ]
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fetchx/src/handlers/request.handler.dart';
 import 'package:fetchx/src/models/response.model.dart';
 import 'package:hive/hive.dart';
@@ -116,5 +118,27 @@ extension RequestParsing on String {
       print("Cache is empty");
       return null;
     });
+  }
+
+  Future<Response?> clearCache({String? path = "fetchx_cache"}) async {
+    Hive.init(path);
+    return await Hive.openBox('cache').then((box) {
+      box.clear();
+      return null;
+    });
+  }
+
+  Future<Response?> head({Map<String, dynamic>? headers, String? path}) async {
+    return await RequestHandler(this, headers: headers, path: path).head();
+  }
+
+  Future<File?> download(
+      {Map<String, dynamic>? headers,
+      String? path,
+      String? savePath,
+      String? fileName}) async {
+    return await RequestHandler(this, headers: headers, path: path).download(
+      filePath: savePath,
+    );
   }
 }
