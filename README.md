@@ -1,26 +1,29 @@
-# Fetchx
+<a href="https://flutter.dev/">
+  <h1 align="center">
+    <img alt="Flutter" src="F.png">
+  </h1>
+</a>
 
 Fetchx is a simple, fast, and secure HTTP client for Dart. It leverages extensions to allow using url-like strings to make http requests.
 
+## Documentation
+
+- [Installation](#installation)
+- [How To](#how-to)
+- [Experimental](#experimental)
+- [Contributing to Fetchx](#contributing)
+- [Translations](#translations)
+- [License](#license)
+
 [Read in another language](#translations)
 
-## Table of contents
-
-## Features
-
-- Get
-- Post
-- Put
-- Delete
-- Patch
-
-## Usage
+## Installation
 
 To use this package add this to your pubspec.yaml
 
 ```yaml
 dependencies:
-  fetchx: ^0.0.5
+  fetchx: ^latest
 ```
 
 Then import the package
@@ -28,6 +31,8 @@ Then import the package
 ```dart
 import 'package:fetchx/fetchx.dart';
 ```
+
+## How To
 
 ### Get
 
@@ -79,6 +84,18 @@ final response = await "https://jsonplaceholder.typicode.com/posts/1".patch({
 
 ```
 
+### Head
+
+```dart
+final response = await "https://jsonplaceholder.typicode.com/posts/1".head();
+```
+
+### Download
+
+```dart
+final file = await "https://jsonplaceholder.typicode.com/posts/1".download();
+```
+
 ## EXPERIMENTAL
 
 These features are still experimental and may change in the future. Any feedback is welcome to improve the package.
@@ -112,9 +129,17 @@ print(response.name);
 final response = await "https://jsonplaceholder.typicode.com/posts/1".get().cache();
 ```
 
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
 ## Translations
 
 This README is available in other languages:
 
 - [English](README.md)
 - [简体中文](README_zh_CN.md)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details

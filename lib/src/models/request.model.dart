@@ -12,4 +12,9 @@ class Request {
     this.isMultipart = false,
     this.method = 'GET',
   });
+
+  @override
+  String toString() {
+    return 'Request{headers: $headers, isMultipart: $isMultipart, url: $url, body: $body, method: $method}';
+  }
 }

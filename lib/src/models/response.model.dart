@@ -34,4 +34,18 @@ class Response {
 
   /// Returns the json object of the body from [Response].
   dynamic get json => body != null ? jsonDecode(body!) : null;
+
+  /// Returns the bytes of the body from [Response].
+  /// Example:
+  /// ```dart
+  /// Response response = await RequestHandler('https://www.google.com').get();
+  /// print(response.bytes);
+  /// ```
+
+  List<int> get bytes => body != null ? utf8.encode(body!) : [];
+
+  @override
+  String toString() {
+    return 'Response{statusCode: $statusCode, body: $body, connectionInfo: $connectionInfo, headers: $headers}';
+  }
 }
