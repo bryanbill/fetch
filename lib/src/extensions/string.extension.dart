@@ -137,8 +137,7 @@ extension RequestParsing on String {
       String? path,
       String? savePath,
       String? fileName}) async {
-    return await RequestHandler(this, headers: headers, path: path).download(
-      filePath: savePath,
-    );
+    return await RequestHandler(this, headers: headers, path: path)
+        .download(filePath: savePath, fileName: fileName);
   }
 }
