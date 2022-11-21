@@ -180,7 +180,7 @@ class RequestHandler {
   /// ```
   /// The file will be downloaded to the current directory.
 
-  Future<File> download({String? filePath}) async {
+  Future<File> download({String? filePath, String? fileName}) async {
     var request = await HttpClient().getUrl(getUri);
     if (headers != null) {
       headers!.forEach((key, value) {
@@ -190,10 +190,14 @@ class RequestHandler {
     var response = await request.close();
     var contentType = response.headers.contentType;
     var extension = contentType?.mimeType.split('/').last;
-    var fileName =
-        filePath ?? '${DateTime.now().millisecondsSinceEpoch}.$extension';
+    String name = '';
+    if (fileName != null) {
+      name = fileName + '.$extension';
+    } else {
+      name = getUri.pathSegments.last + '.$extension';
+    }
     return await response
-        .pipe(File(fileName).openWrite())
+        .pipe(File(name).openWrite())
         .then((value) => value as File);
   }
 
@@ -201,5 +205,4 @@ class RequestHandler {
   String toString() {
     return 'RequestHandler{url: $url, body: $body, headers: $headers, isMultipart: $isMultipart}';
   }
-
 }
